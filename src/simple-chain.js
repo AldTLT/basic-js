@@ -1,23 +1,39 @@
 const chainMaker = {
+  chains: [],
+
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return this.chains.length;
   },
+
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    value = value === undefined ? '' : value;
+    this.chains.push(value);
+    return this;
   },
+
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (!Number.isInteger(position) || (position > this.chains.length) || (position < 1)) {
+      this.chains = [];
+      throw Error('Incorrect link position!');
+    }
+
+    this.chains.splice(position - 1, 1);
+    return this;
   },
+
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this.chains.reverse();
+    return this;
   },
+
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let chainToOut = this.chains
+      .map(chain => '( ' + chain + ' )')
+      .join('~~');
+
+      this.chains = [];
+
+      return chainToOut;
   }
 };
 
